@@ -23,7 +23,7 @@ const Sidebar = ({ toggle, isOpen }) => {
           </SidebarLink>
         </SidebarMenu>
         <SidebarMenu>
-          <SidebarLink to="about" onClick={toggle}>
+          <SidebarLink to="AboutMe" onClick={toggle}>
             About Me
           </SidebarLink>
         </SidebarMenu>
@@ -33,17 +33,12 @@ const Sidebar = ({ toggle, isOpen }) => {
           </SidebarLink>
         </SidebarMenu>
         <SidebarMenu>
-          <SidebarLink to="ContractMe" onClick={toggle}>
+          <SidebarLink to="Footer" onClick={toggle}>
             Contract Me
           </SidebarLink>
         </SidebarMenu>
-        <SidebarMenu>
-          <SidebarLink to="Needin" onClick={toggle}>
-            Resume
-          </SidebarLink>
-        </SidebarMenu>
         <SidebtnWrap>
-          <SidebarRoute>Need My Resume?</SidebarRoute>
+          <SidebarRoute to="/signin">Resume</SidebarRoute>
         </SidebtnWrap>
       </SidebarWrapper>
     </SidebarContainer>
