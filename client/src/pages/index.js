@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { ActionSection } from "../Components/ActionSection";
 import { AboutSection } from "../Components/AboutSection";
 import {
@@ -8,6 +9,8 @@ import {
 } from "../Components/AboutSection/Data";
 import Navbar from "../Components/Navbar";
 import Sidebar from "../Components/SideBar";
+import Portfolio from "../Components/Portfolio";
+import Footer from "../Components/Footer";
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => {
@@ -21,21 +24,8 @@ const Home = () => {
       <AboutSection {...homeObjOne} />
       <AboutSection {...homeObjTwo} />
       <AboutSection {...homeObjThree} />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "left",
-          alignItems: "center",
-          height: "90vh",
-        }}
-      >
-        {/* <h1 id="s1">
-          개발자,
-          <br />
-          어떤 사람이여야 될까요?
-        </h1>
-        <h1 id="s2">코드를 잘짜는 사람?</h1> */}
-      </div>
+      <Portfolio />
+      <Footer />
     </>
   );
 };
