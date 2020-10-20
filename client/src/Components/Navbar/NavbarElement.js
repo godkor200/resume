@@ -3,14 +3,19 @@ import { Link as LinkR } from "react-router-dom";
 import { Link as LinkS } from "react-scroll";
 
 export const Nav = styled.nav`
-  background: #2c2c2c;
+  //네비바 고정부분
+  background: ${({ scrollNav }) => (scrollNav ? "black" : "transparent")};
   height: 80px;
+  margin-top: -80px; //--->고정
+  top: 0; //--> 고정
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   font-size: 1rem;
   padding: 0.5rem calc((100vw - 1000px) / 2);
   z-index: 10;
   position: sticky;
+  opacity: 0.8;
   @media screen and (max-width: 960px) {
     transition: 0.8s all ease;
   }
@@ -66,7 +71,6 @@ export const NavItem = styled.li`
 `;
 
 export const NavLinks = styled(LinkS)`
-  border-radius: 100px;
   color: #fff;
   display: flex;
   align-items: center;
@@ -110,6 +114,11 @@ export const NavBtnLink = styled(LinkR)`
     background: #fff;
     color: #000000;
   }
+`;
+export const Img = styled.img`
+  width: 100%;
+  margin: 0 0 10px 0;
+  padding-right: 0;
 `;
 
 //export const FaBars = styled(FaBars)``;

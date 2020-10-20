@@ -65,7 +65,7 @@ export const SidebarMenu = styled.ul`
 `;
 export const SidebarRoute = styled(LinkR)`
   border-radius: 100px;
-  background: #00b5d5;
+  background: #01bf71;
   white-space: nowrap;
   padding: 10px 22px;
   color: #010606;

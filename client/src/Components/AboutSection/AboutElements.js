@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link as LinkR } from "react-router-dom";
 
 export const AboContainer = styled.div`
   color: #fff;
@@ -27,7 +28,7 @@ export const AboRow = styled.div`
 
   @media screen and (max-width: 768px) {
     grid-template-areas: ${({ imgStart }) =>
-      imgStart ? `"col1 col2"` : `"col1 col1" "col2 col2"`};
+      imgStart ? `"col1 col1"` : `"col1 col1" "col2 col2"`};
   }
 `;
 export const Column1 = styled.div`
@@ -50,7 +51,7 @@ export const TextWrapper = styled.div`
 
 export const TopLine = styled.p`
   color: ${({ TopLineCol }) => (TopLineCol ? "#010606" : "#f7f8fa")};
-  font-size: 40px;
+  font-size: 30px;
   line-height: 16px;
   font-weight: 700;
   letter-spacing: 1.4px;
@@ -58,8 +59,8 @@ export const TopLine = styled.p`
   margin-bottom: 50px;
 `;
 export const Heading = styled.h1`
-  margin-bottom: 25px;
-  font-size: 30px;
+  margin-bottom: 20px;
+  font-size: 25px;
   line-height: 1.1;
   font-weight: 600;
   color: ${({ lightText }) => (lightText ? "#f7f8fa" : "#010606")};
@@ -87,4 +88,24 @@ export const Img = styled.img`
   width: 100%;
   margin: 0 0 10px 0;
   padding-right: 0;
+`;
+export const SigninRoute = styled(LinkR)`
+  border-radius: 100px;
+  background: #01bf71;
+  white-space: nowrap;
+  padding: 10px 22px;
+  color: #010606;
+  font-size: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  font-size: 1rem;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: #fff;
+    color: #010606;
+  }
 `;
