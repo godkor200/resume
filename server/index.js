@@ -29,7 +29,7 @@ app.post("/api/forma", (req, res) => {
     port: 465,
     auth: {
       user: "godkor200@gmail.com", // gmail 계정 아이디를 입력
-      pass: "", // gmail 계정의 비밀번호를 입력
+      pass: "qudrnr2@", // gmail 계정의 비밀번호를 입력
     },
   });
 
