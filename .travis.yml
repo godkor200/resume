@@ -1,0 +1,21 @@
+language: node_js
+
+node_js: "v14.14.0"
+
+before_install: # 패키지를 다운로드 받기 전
+  - npm install -g yarn # yarn을 글로벌로 설치
+
+branches:
+  only:
+    - master
+
+# Travis CI 서버의 Home
+cache:
+  directories:
+    - "$HOME/.server/index"
+
+# CI 실행 완료시 메일로 알람
+notifications:
+  email:
+    recipients:
+      - godkor200@gmail.com
