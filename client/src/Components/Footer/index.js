@@ -1,5 +1,5 @@
-import React from "react";
-import { FaFacebook, FaInstagram, FaYoutube, FaBlog } from "react-icons/fa";
+import React from 'react';
+import { FaFacebook, FaInstagram, FaYoutube, FaBlog } from 'react-icons/fa';
 import {
   FooterContainer,
   FooterWrap,
@@ -14,8 +14,8 @@ import {
   WebsiteRights,
   SocialIcons,
   SocialIconLink,
-} from "./FooterElements.js";
-import { animateScroll as scroll } from "react-scroll";
+} from './FooterElements.js';
+import { animateScroll as scroll } from 'react-scroll';
 
 const Footer = () => {
   const toggleHome = () => {

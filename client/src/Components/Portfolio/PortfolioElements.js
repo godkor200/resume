@@ -1,5 +1,8 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
+export const AboutSLinkA = styled.a`
+  text-align: center;
+  color: #222;
+`;
 export const PortfolioContainer = styled.div`
   background: #c7c9c9;
   height: 800px;

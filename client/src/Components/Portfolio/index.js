@@ -1,7 +1,7 @@
-import React from "react";
-import Icon1 from "../../Logo/undraw_Portfolio_re_qwm5.svg";
-import Icon2 from "../../Logo/undraw_Portfolio_update_re_jqnp (1).svg";
-import Icon3 from "../../Logo/undraw_portfolio_feedback_exfk.svg";
+import React from 'react';
+import Icon1 from '../../Logo/undraw_Portfolio_re_qwm5.svg';
+import Icon2 from '../../Logo/undraw_Portfolio_update_re_jqnp (1).svg';
+import Icon3 from '../../Logo/undraw_portfolio_feedback_exfk.svg';
 import {
   PortfolioContainer,
   PortfolioH1,
@@ -10,7 +10,8 @@ import {
   PortfolioIcon,
   PortfolioH2,
   PortfolioP,
-} from "./PortfolioElements";
+  AboutSLinkA,
+} from './PortfolioElements';
 const Portfolio = () => {
   return (
     <>
@@ -18,9 +19,11 @@ const Portfolio = () => {
         <PortfolioH1>Portfolio</PortfolioH1>
         <PortfolioWrapper>
           <PortfolioCard>
-            <PortfolioIcon src={Icon1} />
-            <PortfolioH2></PortfolioH2>
-            <PortfolioP>포트폴리오는 아직 없어요</PortfolioP>
+            <AboutSLinkA href="https://dev.myfamas.com/">
+              <PortfolioIcon src={Icon1} />
+              <PortfolioH2>FAMAS'S COM</PortfolioH2>
+              <PortfolioP>시니어들을 위한 IT교육 사이트</PortfolioP>
+            </AboutSLinkA>
           </PortfolioCard>
           <PortfolioCard>
             <PortfolioIcon src={Icon2} />
