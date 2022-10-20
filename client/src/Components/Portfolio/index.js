@@ -29,7 +29,7 @@ const Portfolio = () => {
                         </AboutSLinkA>
                     </PortfolioCard>
                     <PortfolioCard>
-                        <AboutSLinkA href="https://d1ydzsbbzcbcbh.cloudfront.net/">
+                        <AboutSLinkA href="https://www.iamdgn.com/">
                             <PortfolioIcon src={Icon2} />
                             <PortfolioH2>imdesign.shop</PortfolioH2>
                             <PortfolioP>만들면 디자인이 된다</PortfolioP>

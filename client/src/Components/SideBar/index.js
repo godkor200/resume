@@ -1,4 +1,5 @@
 import React from "react";
+import { resumeUrl } from "../../config/url";
 import {
     Icon,
     CloseIcon,
@@ -38,9 +39,7 @@ const Sidebar = ({ toggle, isOpen }) => {
                     </SidebarLink>
                 </SidebarMenu>
                 <SidebtnWrap>
-                    <SidebarRoute onClick={() => window.open("https://bit.ly/3Q4YcmV")}>
-                        Resume
-                    </SidebarRoute>
+                    <SidebarRoute onClick={() => window.open(resumeUrl)}>Resume</SidebarRoute>
                 </SidebtnWrap>
             </SidebarWrapper>
         </SidebarContainer>

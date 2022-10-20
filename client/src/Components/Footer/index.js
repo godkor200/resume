@@ -16,6 +16,7 @@ import {
     SocialIconLink,
 } from "./FooterElements.js";
 import { animateScroll as scroll } from "react-scroll";
+import { resumeUrl } from "../../config/url";
 
 const Footer = () => {
     const toggleHome = () => {
@@ -29,9 +30,7 @@ const Footer = () => {
                         <FooterLinksItems>
                             <FooterLinkTitle>About Me</FooterLinkTitle>
                             <FooterLink onClick={toggleHome}>인사말</FooterLink>
-                            <FooterLink onClick={() => window.open("https://bit.ly/3Q4YcmV")}>
-                                이력서
-                            </FooterLink>
+                            <FooterLink onClick={() => window.open(resumeUrl)}>이력서</FooterLink>
                         </FooterLinksItems>
                         <FooterLinksItems>
                             <FooterLinkTitle>Social Media</FooterLinkTitle>

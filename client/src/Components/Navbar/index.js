@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import { animateScroll as scroll } from "react-scroll";
+import { resumeUrl } from "../../config/url";
 
 import {
     Nav,
@@ -36,7 +37,7 @@ const Navbar = ({ toggle }) => {
             <IconContext.Provider value={{ color: "#fff" }}>
                 <Nav scrollNav={scrollNav}>
                     <NavbarContainer>
-                        <NavLogo to="/" onClick={toggleHome}>
+                        <NavLogo to="/resume" onClick={toggleHome}>
                             Googi
                         </NavLogo>
                         <MobileIcon onClick={toggle}>
@@ -89,9 +90,7 @@ const Navbar = ({ toggle }) => {
                             </NavItem>
                         </NavMenu>
                         <NavBtn>
-                            <NavBtnLink onClick={() => window.open("https://bit.ly/3Q4YcmV")}>
-                                Resume
-                            </NavBtnLink>
+                            <NavBtnLink onClick={() => window.open(resumeUrl)}>Resume</NavBtnLink>
                         </NavBtn>
                     </NavbarContainer>
                 </Nav>
