@@ -21,6 +21,11 @@ export default function Career() {
                 <p className="text-xs text-gray-400 mb-1">{job.period}</p>
                 <div className="flex flex-wrap items-center gap-2 mb-1">
                   <h3 className="text-lg font-bold text-gray-900">{job.company}</h3>
+                  {job.cofounder && (
+                    <span className="px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded text-xs font-bold tracking-wide">
+                      Co-founder
+                    </span>
+                  )}
                   <span className="text-gray-400">·</span>
                   <span className="text-gray-600 text-sm">{job.role}</span>
                   {job.contribution && (

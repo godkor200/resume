@@ -60,7 +60,8 @@ export const careers = [
   },
   {
     company: '두디스 프로젝트',
-    role: 'Co-founder · Backend Developer',
+    role: 'Backend Developer',
+    cofounder: true,
     period: '2023.11 – 2024.11',
     contribution: '기여도 80%',
     summary: '백엔드 API 개발 · 데이터 파이프라인 설계 · OpenSearch 기반 구조 개선 · CI/CD 구축',
@@ -125,7 +126,8 @@ export const portfolio = [
   {
     id: 2,
     name: '두디스 (Dothis)',
-    company: '두디스 프로젝트 · Co-founder',
+    company: '두디스 프로젝트',
+    cofounder: true,
     period: '2023.11 – 2024.11',
     url: 'https://bit.ly/4rqr8bw',
     description: '유튜브 콘텐츠 소재 · 키워드 트렌드 분석 플랫폼',

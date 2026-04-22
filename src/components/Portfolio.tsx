@@ -42,7 +42,14 @@ function ProjectCard({ project }: { project: (typeof portfolio)[number] }) {
                 </svg>
               </a>
             </div>
-            <p className="text-sm text-gray-500">{project.company} · {project.period}</p>
+            <div className="flex items-center gap-2 flex-wrap">
+              <p className="text-sm text-gray-500">{project.company} · {project.period}</p>
+              {project.cofounder && (
+                <span className="px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded text-xs font-bold tracking-wide">
+                  Co-founder
+                </span>
+              )}
+            </div>
           </div>
           <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-semibold whitespace-nowrap self-start">
             {project.badge}
