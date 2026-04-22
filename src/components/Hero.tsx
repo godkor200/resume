@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { info } from '@/data/resume'
 
 export default function Hero() {
@@ -74,13 +73,11 @@ export default function Hero() {
 
           {/* Right: Profile photo */}
           <div className="flex justify-center md:justify-end shrink-0">
-            <div className="relative w-52 h-52 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-lg ring-4 ring-gray-100">
-              <Image
-                src="/profile.jpeg"
+            <div className="w-52 h-52 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-lg ring-4 ring-gray-100">
+              <img
+                src="/resume/profile.jpeg"
                 alt="유병국 프로필 사진"
-                fill
-                className="object-cover object-top"
-                priority
+                className="w-full h-full object-cover object-top"
               />
             </div>
           </div>
