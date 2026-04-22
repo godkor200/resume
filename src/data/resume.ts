@@ -38,7 +38,7 @@ export const skills = [
     category: 'Infra / DevOps',
     items: ['AWS (EC2, RDS, S3, ECR, EB, Lambda, SQS)', 'GCP Compute Engine', 'Docker', 'Docker Compose', 'Kubernetes'],
   },
-  { category: 'ETC', items: ['Jest', 'Git', 'Swagger', 'Notion', 'Slack', 'AI Coding Tools'] },
+  { category: 'ETC', items: ['Jest', 'Git', 'Swagger', 'Notion', 'Slack', 'AI Coding Tools (Claude Code, Codex, ChatGPT)'] },
 ]
 
 export const careers = [
