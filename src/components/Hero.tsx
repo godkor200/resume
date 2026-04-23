@@ -19,12 +19,17 @@ export default function Hero() {
               ))}
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-black text-gray-900 mb-2 tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-black text-gray-900 mb-3 tracking-tight">
               {info.name}
             </h1>
-            <p className="text-xl md:text-2xl text-blue-600 font-medium mb-8">
-              {info.title} · {info.years}
-            </p>
+            <div className="flex flex-wrap items-center gap-3 mb-8">
+              <span className="text-xl md:text-2xl text-blue-600 font-medium">
+                {info.title}
+              </span>
+              <span className="px-3 py-1 bg-blue-600 text-white text-sm font-bold rounded-full">
+                총 개발경력 {info.years}
+              </span>
+            </div>
 
             <ul className="space-y-2 mb-10">
               {info.taglines.map((line, i) => (
