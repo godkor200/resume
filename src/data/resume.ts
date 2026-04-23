@@ -167,7 +167,7 @@ export const portfolio = [
 export const sideProjects = [
   {
     name: '차량 운행 로그 분석 파이프라인',
-    period: '2025.04',
+    period: '2026.04',
     github: 'https://github.com/godkor200/driving-log',
     description: '차량의 Raw 로그 데이터를 실시간으로 수신하여 데이터 정합성을 확보하고 위험 운전 패턴을 탐지하는 백엔드 데이터 파이프라인',
     techStack: ['Python', 'FastAPI', 'Kafka', 'PostgreSQL', 'NumPy', 'Docker'],
