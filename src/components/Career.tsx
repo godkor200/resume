@@ -34,7 +34,12 @@ export default function Career() {
                     </span>
                   )}
                 </div>
-                <p className="text-sm text-gray-500 mb-4">{job.summary}</p>
+                <p className="text-sm text-gray-500 mb-3">{job.summary}</p>
+                {job.leaveReason && (
+                  <p className="text-xs text-gray-400 mb-4">
+                    퇴사 사유 : {job.leaveReason}
+                  </p>
+                )}
                 <ul className="space-y-1.5">
                   {job.achievements.map((item, j) => (
                     <li key={j} className="flex items-start gap-2 text-sm text-gray-600">
