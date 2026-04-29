@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { portfolio } from '@/data/resume'
-import { SectionHeader } from './About'
+import SectionHeader from './SectionHeader'
 
 export default function Portfolio() {
   return (
@@ -69,8 +69,8 @@ function ProjectCard({ project }: { project: (typeof portfolio)[number] }) {
 
         {/* Achievements */}
         <ul className="space-y-1.5 mb-5">
-          {project.achievements.map((item, i) => (
-            <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
+          {project.achievements.map((item) => (
+            <li key={item.slice(0, 40)} className="flex items-start gap-2 text-sm text-gray-600">
               <span className="text-green-500 mt-1 shrink-0">✓</span>
               <span className="leading-relaxed">{item}</span>
             </li>

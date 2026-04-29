@@ -1,5 +1,5 @@
 import { careers } from '@/data/resume'
-import { SectionHeader } from './About'
+import SectionHeader from './SectionHeader'
 
 export default function Career() {
   return (
@@ -9,7 +9,7 @@ export default function Career() {
 
         <div className="mt-10 space-y-0">
           {careers.map((job, i) => (
-            <div key={i} className="flex gap-6 group">
+            <div key={job.company} className="flex gap-6 group">
               {/* Timeline */}
               <div className="flex flex-col items-center">
                 <div className="w-3 h-3 rounded-full bg-blue-600 mt-1.5 shrink-0 group-first:ring-4 group-first:ring-blue-100" />
@@ -41,8 +41,8 @@ export default function Career() {
                   </p>
                 )}
                 <ul className="space-y-1.5">
-                  {job.achievements.map((item, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-gray-600">
+                  {job.achievements.map((item) => (
+                    <li key={item.slice(0, 40)} className="flex items-start gap-2 text-sm text-gray-600">
                       <span className="text-blue-400 mt-1.5 shrink-0">•</span>
                       <span className="leading-relaxed">{item}</span>
                     </li>

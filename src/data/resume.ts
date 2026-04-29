@@ -41,7 +41,18 @@ export const skills = [
   { category: 'ETC', items: ['Jest', 'Git', 'Swagger', 'Notion', 'Slack', 'AI Coding Tools (Claude Code, Codex, ChatGPT)'] },
 ]
 
-export const careers = [
+type LeaveReason = '경영악화' | '계약종료' | '이직'
+
+export const careers: Array<{
+  company: string
+  role: string
+  cofounder?: boolean
+  period: string
+  contribution?: string
+  leaveReason?: LeaveReason
+  summary: string
+  achievements: string[]
+}> = [
   {
     company: '스페이스오디티',
     role: 'Backend Developer',
@@ -97,7 +108,7 @@ export const careers = [
     company: '캐스트윈',
     role: 'B2B Sales',
     period: '2017.01 – 2020.02',
-    contribution: null,
+    contribution: undefined,
     summary: '국내 3대 이동통신사 및 건설사 대상 B2B 계약 및 영업',
     achievements: [
       '국내 3대 이동통신사 및 건설사 대상 B2B 계약 및 영업 수행',
