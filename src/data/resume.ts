@@ -280,12 +280,12 @@ export const sideProjects = [
       "GitHub Actions",
     ],
     achievements: [
-      "Groq/Anthropic 멀티 프로바이더 추상화 — API 키 유무에 따라 자동 폴백, 프로바이더 교체 시 비즈니스 로직 무변경",
+      "Groq/Anthropic 멀티 프로바이더 추상화",
       "챗봇 2-step 파이프라인: LLM 의도 분류(TRADE_ENTRY/INVESTMENT_QUERY) + ticker 추출 → 매매 파싱 또는 투자 어드바이저 라우팅",
       "투자 질문 시 DART 재무·네이버 뉴스·Yahoo Finance 기술지표를 Promise.all 병렬 수집 후 LLM 합성 리포트 생성 (24h Redis 캐시)",
       "pgvector 벡터 스토어로 뉴스 임베딩 RAG 구축 — 유사 문서 검색으로 분석 컨텍스트 보강",
       "pnpm + Turborepo 모노레포로 shared-types·db-schema 패키지 단일 소스 관리",
-      "GitHub Actions + SSH 자동 배포 — main 브랜치 push 시 서버에서 docker compose up --build 자동 실행",
+      "GitHub Actions + SSH 자동 배포",
     ],
   },
   {
