@@ -1,4 +1,5 @@
 import { about } from '@/data/resume'
+import SectionHeader from './SectionHeader'
 
 export default function About() {
   return (
@@ -8,21 +9,12 @@ export default function About() {
 
         <div className="mt-10 max-w-3xl space-y-5">
           {about.map((para, i) => (
-            <p key={i} className="text-gray-600 leading-8 text-base">
+            <p key={para.slice(0, 20)} className="text-gray-600 leading-8 text-base">
               {para}
             </p>
           ))}
         </div>
       </div>
     </section>
-  )
-}
-
-export function SectionHeader({ label }: { label: string }) {
-  return (
-    <div className="flex items-center gap-4">
-      <h2 className="text-2xl font-bold text-gray-900 tracking-tight">{label}</h2>
-      <div className="flex-1 h-px bg-gray-200" />
-    </div>
   )
 }

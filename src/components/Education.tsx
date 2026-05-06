@@ -1,5 +1,5 @@
 import { education, training, certifications, patents } from '@/data/resume'
-import { SectionHeader } from './About'
+import SectionHeader from './SectionHeader'
 
 export default function Education() {
   return (

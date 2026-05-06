@@ -1,5 +1,5 @@
 import { skills } from '@/data/resume'
-import { SectionHeader } from './About'
+import SectionHeader from './SectionHeader'
 
 export default function Skills() {
   return (

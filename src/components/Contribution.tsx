@@ -1,5 +1,5 @@
 import { contributions } from '@/data/resume'
-import { SectionHeader } from './About'
+import SectionHeader from './SectionHeader'
 
 export default function Contribution() {
   return (
