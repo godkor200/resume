@@ -44,7 +44,7 @@ NestJS, TypeORM, PostgreSQL을 기반으로 데이터 수집·가공·집계 파
 **Database / Storage**
 
 - PostgreSQL, MariaDB, MySQL, MongoDB
-- Redis, OpenSearch, Google Firestore, Kafka
+- Redis, OpenSearch, Google Firestore, Kafka, pgvector
 
 **Infra / DevOps**
 
@@ -54,7 +54,7 @@ NestJS, TypeORM, PostgreSQL을 기반으로 데이터 수집·가공·집계 파
 
 **ETC**
 
-- Jest, Git, Swagger, Notion, Slack, AI Coding Tools (Codex, ChatGPT)
+- Jest, Git, Swagger, Notion, Slack, AI Coding Tools (Claude Code)
 
 ---
 

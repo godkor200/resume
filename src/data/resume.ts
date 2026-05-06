@@ -50,6 +50,7 @@ export const skills = [
       "OpenSearch",
       "Google Firestore",
       "Kafka",
+      "pgvector",
     ],
   },
   {
@@ -70,7 +71,7 @@ export const skills = [
       "Swagger",
       "Notion",
       "Slack",
-      "AI Coding Tools (Claude Code, Codex, ChatGPT)",
+      "AI Coding Tools (Claude Code)",
     ],
   },
 ];
