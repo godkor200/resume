@@ -1,5 +1,5 @@
 import Nav from '@/components/Nav'
-import Hero from '@/components/Hero'
+import HeroSimple from '@/components/HeroSimple'
 import Portfolio from '@/components/Portfolio'
 import SideProject from '@/components/SideProject'
 import Contribution from '@/components/Contribution'
@@ -9,7 +9,7 @@ export default function PortfolioPage() {
   return (
     <main>
       <Nav />
-      <Hero />
+      <HeroSimple />
       <Portfolio />
       <SideProject />
       <Contribution />

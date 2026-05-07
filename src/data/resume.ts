@@ -1,5 +1,3 @@
-import { url } from "inspector";
-
 export const info = {
   name: "유병국",
   title: "Backend Developer",
