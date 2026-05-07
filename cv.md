@@ -135,7 +135,9 @@ LG이노텍 벤더사 고아정공에서 중국 현지 인력 관리 및 운영 
 
 ### 개인 투자 어시스턴트 플랫폼 (Stock Pile)
 
-_(2026.04 – 진행중)_
+_(2026.04 – 진행중)_ | [Live](https://byeongguk.cloud) | [GitHub](https://github.com/godkor200/stock-pile)
+
+데모 계정 — 이메일: `demo@byeongguk.cloud` / 비밀번호: `Test1234!`
 
 **TypeScript · NestJS · Next.js · PostgreSQL · pgvector · Redis · Docker · GitHub Actions**
 

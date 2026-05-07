@@ -48,7 +48,15 @@ export default function SideProject() {
                 </div>
               </div>
 
-              <p className="text-sm text-gray-600 mb-5 leading-6">{project.description}</p>
+              <p className="text-sm text-gray-600 mb-3 leading-6">{project.description}</p>
+
+              {'demoAccount' in project && project.demoAccount && (
+                <div className="mb-5 text-xs text-gray-500 bg-gray-50 border border-gray-100 rounded-lg px-3 py-2 flex flex-wrap gap-x-4 gap-y-1">
+                  <span className="font-semibold text-gray-600">데모 계정</span>
+                  <span>이메일: <code className="text-gray-700">{(project.demoAccount as { email: string; password: string }).email}</code></span>
+                  <span>비밀번호: <code className="text-gray-700">{(project.demoAccount as { email: string; password: string }).password}</code></span>
+                </div>
+              )}
 
               <div className="flex flex-wrap gap-2 mb-5">
                 {project.techStack.map((tech) => (
