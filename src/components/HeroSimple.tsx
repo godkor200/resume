@@ -2,7 +2,7 @@ import { info } from '@/data/resume'
 
 export default function HeroSimple() {
   return (
-    <section className="bg-white pt-14 border-b border-gray-100">
+    <section className="bg-white pt-14 print:pt-0 border-b border-gray-100">
       <div className="max-w-5xl mx-auto px-6 py-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
         <div>
           <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-1">{info.name}</h1>

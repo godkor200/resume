@@ -2,7 +2,7 @@ import { info } from '@/data/resume'
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center bg-white pt-14">
+    <section className="min-h-screen flex items-center bg-white pt-14 print:pt-0 print:min-h-0">
       <div className="max-w-5xl mx-auto px-6 py-20 w-full">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10">
 

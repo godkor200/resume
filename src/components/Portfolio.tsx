@@ -80,7 +80,7 @@ function ProjectCard({ project }: { project: (typeof portfolio)[number] }) {
         {/* Expand toggle */}
         <button
           onClick={() => setOpen(!open)}
-          className="flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors"
+          className="flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors print:hidden"
         >
           {open ? '접기' : '기술적 배경 보기'}
           <svg
@@ -95,8 +95,7 @@ function ProjectCard({ project }: { project: (typeof portfolio)[number] }) {
       </div>
 
       {/* Expanded detail */}
-      {open && (
-        <div className="border-t border-gray-100 bg-gray-50 px-6 md:px-8 py-6 space-y-4">
+      <div className={`border-t border-gray-100 bg-gray-50 px-6 md:px-8 py-6 space-y-4 print:block ${open ? 'block' : 'hidden'}`}>
           <div>
             <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">문제</h4>
             <p className="text-sm text-gray-600 leading-7">{project.problem}</p>
@@ -125,8 +124,7 @@ function ProjectCard({ project }: { project: (typeof portfolio)[number] }) {
               </a>
             </div>
           )}
-        </div>
-      )}
+      </div>
     </div>
   )
 }
