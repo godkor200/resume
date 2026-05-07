@@ -56,8 +56,8 @@ export const skills = [
   {
     category: "Infra / DevOps",
     items: [
-      "AWS (EC2, RDS, S3, ECR, EB, Lambda, SQS)",
-      "GCP Compute Engine",
+      "AWS (EC2, RDS, S3, ECR, Elastic Beanstalk, Route53, Lambda, SQS)",
+      "GCP (Compute Engine)",
       "Docker",
       "Docker Compose",
       "Kubernetes",
@@ -102,7 +102,7 @@ export const careers: Array<{
       "사전 집계, 캐시, 인덱스 최적화를 적용해 조회 성능과 운영 복잡도 사이의 균형 확보",
       "Redis 캐싱 전략 적용으로 API 응답 속도 20% 수준 개선 및 DB 부하 완화",
       "K-POP 팬 플랫폼 Blip(400만 누적 다운로드 · 40만 MAU) 웹/앱 API 개발 및 유지보수 — 신규 기능(웹 Blip) 개발 및 서비스 장애 개선",
-      "기사 썸네일 이미지를 해시(Hash) 값으로 변환하고 해밍 거리(Hamming Distance) 기반 유사도 비교를 통해 동일·유사 이미지를 판별하는 중복 제거 로직 구현",
+      "기사 썸네일 이미지를 해시(Hash) 값으로 변환하고 해밍 거리(Hamming Distance) 기반 유사도 비교를 통해 동일·유사 이미지를 판별하는 중복 제거 로직을 구현",
       "데이터 수집 실패·집계 이상치를 빠르게 인지하는 모니터링 및 알림 전담 구조 구축",
     ],
   },
@@ -157,10 +157,9 @@ export const careers: Array<{
     role: "인턴/수습",
     period: "2016.07 – 2016.12",
     contribution: undefined,
-    summary: "LG이노텍 벤더사 · 중국 현지 인력 관리 및 운영 지원",
+    summary: "인사부 · LG이노텍 계열사",
     achievements: [
-      "중국 현지 인력 관리 및 운영 지원 수행",
-      "현장 프로세스 이해와 문제 해결 경험을 통해 시스템 기반 개선에 관심을 갖게 됨",
+      "LG이노텍 벤더사 고아정공에서 중국 현지 인력 관리 및 운영 지원을 수행하며 현장 프로세스 이해와 문제 해결 경험을 쌓았고 이후 시스템 기반 개선에 관심을 갖게 됨",
     ],
   },
 ];
@@ -186,15 +185,15 @@ export const portfolio = [
       "Argo CD",
     ],
     achievements: [
-      "MySQL ↔ PostgreSQL 이원화 환경에서 데이터 동기화 흐름과 조회 모델 재설계",
-      "화면 지표는 사전 집계로, 탐색형 데이터만 동적 조회로 분리해 응답 안정성 확보",
-      "기사 썸네일 해시 비교 기반 중복 제거 로직 구현",
-      "Slack 기반 집계 이상치 알림 구조 구축",
+      "기존 Blip 서비스의 MySQL 운영 데이터와 신규 K-POP Radar의 PostgreSQL 구조가 공존하는 환경에서 데이터 동기화 흐름과 조회 모델 재설계",
+      "화면에서 자주 호출되는 지표는 사전 집계 구조로 분리하고 탐색형 데이터만 동적 조회로 남겨 대시보드 응답 안정성과 운영 복잡도 사이의 균형 확보",
+      "수집 결과는 Firestore에 Raw 형태로 저장하고 db-syncer를 통해 PostgreSQL 기준 모델로 반영하는 구조 운영",
+      "중간 집계 상태와 데이터 정합성을 확인하는 Slack 알림 로직 구성",
     ],
     problem:
-      "기존 Blip(MySQL)과 신규 K-POP Radar(PostgreSQL)의 이원화 환경에서 단순 이전이 아니라 서비스 화면 구조에 맞는 데이터 모델을 새로 설계해야 했습니다.",
+      "기존 Blip 서비스의 운영 데이터는 MySQL에 계속 쌓이고 있었고 새로 구축하는 K-POP Radar는 PostgreSQL 기반으로 설계해야 했기 때문에 한동안 데이터베이스가 이원화된 상태였습니다. 단순히 데이터를 옮기는 문제가 아니라 새 서비스 화면 구조와 기획 의도에 맞는 PostgreSQL 기준 데이터 모델을 다시 설계해야 했고 핵심은 기존 데이터를 그대로 이전하는 것이 아니라 서비스에서 실제로 사용하는 지표를 기준으로 조회 구조를 다시 정의하는 일이었습니다.",
     solution:
-      "화면에서 자주 호출되는 지표는 사전 집계 테이블로 분리하고 탐색형 데이터만 동적 조회로 남겼습니다. 인덱스 최적화, Redis 캐시, 시계열 파티셔닝을 함께 적용해 조회 병목을 줄였습니다.",
+      "화면에서 자주 호출되고 계산 비용이 큰 지표는 사전 집계 테이블로 분리하고 비교나 탐색 성격이 강한 데이터만 동적 조회로 남겼습니다. 실제 쿼리 패턴 기반 인덱스 최적화, 시계열 데이터 파티셔닝, Redis 캐시를 함께 적용해 조회 병목을 줄였습니다. 운영 단계에서는 동기화 누락, 집계 지연, 이상치를 빠르게 확인할 수 있도록 모니터링과 Slack 알림 구조를 함께 두었습니다.",
     techDetail:
       "Backend: NestJS, TypeORM / Database: PostgreSQL, GCP Firestore, Redis / Infra: Kubernetes, Argo CD",
   },
@@ -219,15 +218,14 @@ export const portfolio = [
       "Redis",
     ],
     achievements: [
-      "MySQL 조인 중심 구조 → 비정규화 기반 검색·집계 구조 전환",
-      "핵심 집계 API 응답속도 40초 → 3초 개선",
-      "토큰 테이블 + OpenSearch 비정규화 2단계 검색 구조 설계",
+      "MySQL 조인 중심 구조에서 발생하던 병목을 분석해 비정규화 기반 검색·집계 구조로 전환하고 핵심 집계 API 응답 속도를 약 40초에서 3초 수준으로 개선",
+      "검색 요청은 토큰 테이블에서 후보 콘텐츠를 먼저 좁히고 이후 OpenSearch의 비정규화 데이터에서 최종 조회하는 방식으로 구성해 탐색 비용과 응답 지연을 함께 축소",
       "BERT 기반 텍스트 임베딩·토크나이징·클러스터링 파이프라인 구축",
     ],
     problem:
-      "MySQL에서 크롤링 데이터를 조인·집계하는 구조로 인해 핵심 집계 API 응답이 40~60초까지 느려졌습니다. 조인을 빠르게 하는 것이 아니라 조인을 계속 요구하는 구조 자체가 문제였습니다.",
+      "초기에는 MySQL에서 크롤링 데이터를 조인하고 집계해 API를 제공했습니다. 데이터가 쌓이면서 병목이 심해졌고 핵심 집계 API 하나를 호출하면 40초에서 1분까지 걸리는 상황이 발생했습니다. 문제는 단순히 느린 쿼리 하나가 아니었습니다. 조인 중심 구조 자체가 조회 목적과 맞지 않았고 시간이 갈수록 한계가 더 분명해졌습니다.",
     solution:
-      "DWH 데이터를 Logstash로 비정규화해 OpenSearch에 인덱싱하고 검색 시 토큰 테이블에서 후보 ID를 먼저 좁힌 뒤 OpenSearch에서 최종 조회하는 2단계 구조로 전환했습니다.",
+      "처음에는 OpenSearch 기반 구조를 도입해 검색과 집계 워크로드를 분리했지만 구조적으로 완전히 해결된 수준은 아니었습니다. 결국 문제의 핵심은 조인을 빠르게 하는 것이 아니라 조인을 계속 요구하는 구조 자체에 있다고 판단했습니다. DWH 데이터를 Logstash로 비정규화해 OpenSearch에 인덱싱하고 조회 시점 조인을 최대한 없애는 방식으로 전환했습니다. 검색 요청은 토큰 테이블에서 키워드와 연결된 콘텐츠 ID를 먼저 찾고 그 후보군을 기준으로 OpenSearch의 비정규화 데이터에서 최종 조회하도록 설계했습니다.",
     techDetail:
       "Main: MySQL / DWH: MariaDB / 인덱싱: Logstash → OpenSearch / 캐시: Redis, 토큰 테이블 / 수집: Kafka",
   },
@@ -249,15 +247,15 @@ export const portfolio = [
       "GitHub Actions",
     ],
     achievements: [
-      "MongoDB 조합형 JSON + Next.js 공통 템플릿 기반 상품 페이지 자동 생성",
-      "Optimistic Locking으로 동시 주문 환경의 재고 정합성 확보",
-      "Express → NestJS + Hexagonal Architecture 전환",
-      "CI/CD 파이프라인 구축 및 개발 컨벤션 표준화",
+      "하드코딩으로 운영하던 상품 상세 페이지 구조를 조합 데이터 기반 자동 생성 방식으로 전환해 상품 추가와 수정이 반복될수록 커지던 운영 비용 절감",
+      "Next.js 공통 템플릿과 MongoDB 조합형 JSON 구조를 바탕으로 관리자 화면에서 상품 정의만으로 페이지 구성이 달라지는 상품 상세 구조 설계",
+      "재고 차감에는 Optimistic Locking을 적용해 동시 주문 환경에서도 데이터 정합성 확보",
+      "신규 개발팀의 개발 컨벤션과 배포 프로세스 표준화 정리",
     ],
     problem:
-      "상품마다 페이지를 하드코딩하는 구조로 상품 추가·수정 시마다 개발이 필요했고 동시 주문 시 재고 불일치 문제가 발생했습니다.",
+      "기존 구조는 상품 하나당 상세 페이지 하나를 직접 하드코딩하는 방식이었습니다. 상품이 늘어날수록 페이지 수가 같이 늘었고 수정 범위도 커졌습니다. 운영 변경이 생길 때마다 개발이 같이 들어가야 했고 레거시 파일 복사 기반 유지보수 때문에 휴먼 에러도 자주 발생했습니다. 여기에 주문이 동시에 들어오면 재고 불일치 문제가 생겼습니다.",
     solution:
-      "관리자 화면에서 조합 데이터만 정의하면 Next.js 공통 템플릿 기반으로 페이지가 자동 구성되도록 전환하고 Optimistic Locking으로 동시성 문제를 해결했습니다.",
+      "상품을 페이지 단위가 아니라 조합 데이터 단위로 다시 정의했습니다. 관리자 페이지에서 원재료와 옵션을 조합해 MongoDB document로 관리하고 Next.js 공통 템플릿이 그 JSON 구조를 바탕으로 조건부 렌더링되도록 설계했습니다. 재고 관리에는 Optimistic Locking을 적용해 버전 기반으로 충돌을 감지하고 재시도 가능한 흐름을 설계해 동시 주문 환경에서도 정합성을 유지하도록 했습니다.",
     techDetail:
       "Backend: NestJS / Frontend: Next.js / Database: MongoDB / Infra: AWS EC2, ECS / CI/CD: GitHub Actions",
   },
@@ -282,12 +280,12 @@ export const sideProjects = [
       "GitHub Actions",
     ],
     achievements: [
-      "Groq/Anthropic 멀티 프로바이더 추상화",
+      "Groq/Anthropic 멀티 프로바이더 추상화 — API 키 유무에 따라 자동 폴백, 프로바이더 교체 시 비즈니스 로직 무변경",
       "챗봇 2-step 파이프라인: LLM 의도 분류(TRADE_ENTRY/INVESTMENT_QUERY) + ticker 추출 → 매매 파싱 또는 투자 어드바이저 라우팅",
       "투자 질문 시 DART 재무·네이버 뉴스·Yahoo Finance 기술지표를 Promise.all 병렬 수집 후 LLM 합성 리포트 생성 (24h Redis 캐시)",
       "pgvector 벡터 스토어로 뉴스 임베딩 RAG 구축 — 유사 문서 검색으로 분석 컨텍스트 보강",
       "pnpm + Turborepo 모노레포로 shared-types·db-schema 패키지 단일 소스 관리",
-      "GitHub Actions + SSH 자동 배포",
+      "GitHub Actions + SSH 자동 배포 — main 브랜치 push 시 서버에서 docker compose up --build 자동 실행",
     ],
   },
   {
@@ -312,7 +310,7 @@ export const contributions = [
   {
     title: "느린 조회·집계 구조 개선",
     description:
-      "조회 패턴과 데이터 모델을 함께 분석해 병목 원인을 찾고 비정규화·캐시·집계 구조 개선으로 성능을 높일 수 있습니다.",
+      "조회 패턴과 데이터 모델을 함께 분석해 병목 원인을 찾고 필요한 경우 비정규화·캐시·집계 구조 개선으로 성능을 높일 수 있습니다.",
   },
   {
     title: "데이터 수집·가공 파이프라인 안정화",
@@ -337,7 +335,7 @@ export const contributions = [
   {
     title: "반복 업무 생산성 향상",
     description:
-      "반복 구현, 테스트 초안, 리팩토링 검토 단계에서 AI 코딩 도구를 활용해 속도를 높이되 최종 구조와 품질은 직접 검증하는 방식으로 개발합니다.",
+      "반복 구현, 테스트 초안, 리팩토링 검토 단계에서는 AI 코딩 도구를 활용해 속도를 높이되 최종 구조와 품질은 직접 검증하는 방식으로 개발할 수 있습니다.",
   },
 ];
 
@@ -366,10 +364,10 @@ export const education = [
   },
   {
     school: "한국 대구 계명대학교 (Keimyung University)",
-    major: "중국어문학과 전공 / 국제통상학 부전공",
+    major: "어문학계열 / 중국어문학과 전공 / 국제 통상학 부전공",
     period: "2008.03 – 2012.03 (중퇴)",
     gpa: "3.0 / 4.5",
-    note: "중국어 문법·회화·작문·독해 이수. 언어와 문화 그리고 통상에 대한 이해를 바탕으로 커뮤니케이션 역량 형성.",
+    note: "중국어 문법, 회화, 작문, 독해 및 중국 문학·문화 관련 과목 이수. 국제통상 부전공을 통해 무역 실무, 국제경제, 통상 구조에 대한 기초 이해 확보. 언어와 문화 그리고 통상에 대한 이해를 바탕으로 커뮤니케이션 역량과 다양한 관점을 해석하는 사고력 형성.",
   },
 ];
 
@@ -378,6 +376,6 @@ export const training = [
     institution: "코드스테이츠 (Code States)",
     course: "풀스택(Node.js) 과정 수료",
     period: "2020.07 – 2020.12",
-    note: "JavaScript, Node.js, SQL, AWS 기반 웹 서비스 개발 교육 이수. 단기 프로젝트(2주/4주) 및 페어 프로그래밍 경험.",
+    note: "JavaScript, Node.js, SQL, AWS 기반 웹 서비스 개발 교육 이수. 단기 프로젝트(2주/4주) 및 페어 프로그래밍 경험. 웹 서비스 전반에 대한 실습 중심 커리큘럼 수행.",
   },
 ];
