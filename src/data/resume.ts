@@ -270,7 +270,7 @@ export const sideProjects = [
     name: "개인 투자 어시스턴트 플랫폼 (Stock Pile)",
     period: "2026.04 – 진행중",
     github: "https://github.com/godkor200/stock-pile",
-    url: "http://158.180.68.238",
+    url: "http://ypi3b0bv192l905qbmv4u90d.158.180.68.238.sslip.io",
     description:
       "자연어 챗봇으로 매매를 기록하고 LLM 기반 포트폴리오 조언과 종목 분석 리포트를 제공하는 투자 관리 서비스",
     techStack: [
