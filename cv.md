@@ -139,16 +139,15 @@ _(2026.04 – 진행중)_ | [Live](https://byeongguk.cloud) | [GitHub](https://g
 
 데모 계정 — 이메일: `demo@byeongguk.cloud` / 비밀번호: `Test1234!`
 
-**TypeScript · NestJS · Next.js · PostgreSQL · pgvector · Redis · Docker · GitHub Actions**
+**TypeScript · NestJS · Next.js · PostgreSQL(pgvector) · Redis · Docker · GitHub Actions**
 
-자연어 챗봇으로 매매를 기록하고 LLM 기반 포트폴리오 조언과 종목 분석 리포트를 제공하는 투자 관리 서비스
+자연어 챗봇으로 매매를 기록하고 LLM 기반 종목 분석 리포트를 제공하는 개인 투자 관리 서비스 (pnpm Turborepo 모노레포)
 
-- Groq/Anthropic 멀티 프로바이더 추상화 — API 키 유무에 따라 자동 폴백, 프로바이더 교체 시 비즈니스 로직 무변경
-- 챗봇 2-step 파이프라인: LLM 의도 분류(TRADE_ENTRY/INVESTMENT_QUERY) + ticker 추출 → 매매 파싱 또는 투자 어드바이저 라우팅
-- 투자 질문 시 DART 재무·네이버 뉴스·Yahoo Finance 기술지표를 Promise.all 병렬 수집 후 LLM 합성 리포트 생성 (24h Redis 캐시)
-- pgvector 벡터 스토어로 뉴스 임베딩 RAG 구축 — 유사 문서 검색으로 분석 컨텍스트 보강
-- pnpm + Turborepo 모노레포로 shared-types·db-schema 패키지 단일 소스 관리
-- GitHub Actions + SSH 자동 배포 — main 브랜치 push 시 서버에서 docker compose up --build 자동 실행
+- Groq / Anthropic 멀티 프로바이더 추상화 — 공급사 전환 시 호출부 변경 없이 Provider 교체 가능한 어댑터 설계
+- 챗봇 2-step 파이프라인: 의도 분류(TRADE_ENTRY / INVESTMENT_QUERY) → 종목 추출 후 매매 파싱 또는 투자 어드바이저로 라우팅
+- DART 재무 · 네이버 뉴스 · Yahoo Finance 지표를 Promise.all 병렬 수집 후 LLM 합성 리포트 생성, 결과를 Redis에 24h 캐싱하여 API 호출 비용 절감
+- pgvector 기반 뉴스 임베딩 RAG — 코사인 유사도 검색으로 분석 컨텍스트 보강
+- shared-types · db-schema 패키지를 단일 소스로 관리해 DTO 중복 제거
 
 ---
 
@@ -160,14 +159,14 @@ _(2026.04)_
 
 **Python · FastAPI · Kafka · PostgreSQL · NumPy · Docker**
 
-차량의 Raw 로그 데이터를 실시간으로 수신하여 데이터 정합성을 확보하고 위험 운전 패턴을 탐지하는 백엔드 데이터 파이프라인
+차량 Raw 로그를 실시간 수신·정제하여 위험 운전 패턴을 탐지하는 백엔드 파이프라인
 
-- Kafka 토픽 구독 기반 실시간 수신 → 10초 시간 윈도우 버퍼링 후 일괄 파이프라인 처리
-- `np.interp` 벡터화로 결측값·이상치 보간, NumPy 벡터화 haversine으로 거리 계산
-- Bounding box 사전 필터로 제한구역 비교 연산 O(N×M) → 후보 사전 축소
-- SQLAlchemy 2.0 Core bulk insert로 대용량 DB 적재 최적화
-- SHA-256 기반 Trip 멱등성 처리 — 동일 데이터 재전송 시 중복 적재 방지
-- `MAX_RECORDS` 가드로 OOM 방어, Pydantic `field_validator`로 GPS 범위 및 timestamp 입력 검증
+- Kafka 토픽 구독 → 10초 슬라이딩 윈도우 버퍼링 후 일괄 처리로 건별 DB I/O 제거, 처리량 향상
+- `np.interp` + NumPy 벡터화 haversine으로 결측값 보간 및 거리 계산 — 순수 Python 루프 대비 처리 속도 개선
+- Bounding box 사전 필터로 제한구역 비교 연산 O(N×M)의 후보를 사전 축소, 불필요한 정밀 계산 회피
+- SQLAlchemy 2.0 Core bulk insert로 대용량 GPS 레코드 적재 최적화
+- SHA-256 기반 Trip 멱등성 처리 — 재전송 시 중복 적재 방지
+- `MAX_RECORDS` 가드 + Pydantic `field_validator`로 OOM 및 입력 이상치 방어
 
 ---
 
