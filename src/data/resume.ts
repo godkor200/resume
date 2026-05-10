@@ -267,6 +267,7 @@ export const sideProjects = [
     period: "2026.04 – 진행중",
     github: "https://github.com/godkor200/stock-pile",
     url: "https://byeongguk.cloud",
+    blog: "https://velog.io/@godkor200/%EA%B0%9C%EC%9D%B8-%ED%88%AC%EC%9E%90-%EC%96%B4%EC%8B%9C%EC%8A%A4%ED%84%B4%ED%8A%B8%EB%A5%BC-%EC%A7%81%EC%A0%91-%EB%A7%8C%EB%93%A4%EC%96%B4-%EB%B4%A4%EB%8B%A4-stock-pile-%EA%B0%9C%EB%B0%9C%EA%B8%B0",
     demoAccount: { email: "demo@byeongguk.cloud", password: "Test1234!" },
     description:
       "자연어 챗봇으로 매매를 기록하고 LLM 기반 종목 분석 리포트를 제공하는 개인 투자 관리 서비스 (pnpm Turborepo 모노레포)",
