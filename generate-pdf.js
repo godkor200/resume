@@ -91,6 +91,15 @@ async function main() {
   await page.pdf({ ...pdfOptions, path: path.join(__dirname, '이력서_유병국.pdf') });
   console.log('✅ 이력서_유병국.pdf 생성 완료');
 
+  // 경력기술서 (career-description)
+  console.log('📄 경력기술서 생성 중...');
+  await page.goto(`http://localhost:${PORT}${BASE_PATH}/career-description/`, {
+    waitUntil: 'networkidle2',
+    timeout: 30000,
+  });
+  await page.pdf({ ...pdfOptions, path: path.join(__dirname, '경력기술서_유병국.pdf') });
+  console.log('✅ 경력기술서_유병국.pdf 생성 완료');
+
   // 포트폴리오 (portfolio)
   console.log('📄 포트폴리오 생성 중...');
   await page.goto(`http://localhost:${PORT}${BASE_PATH}/portfolio/`, {
@@ -99,6 +108,15 @@ async function main() {
   });
   await page.pdf({ ...pdfOptions, path: path.join(__dirname, '포트폴리오_유병국.pdf') });
   console.log('✅ 포트폴리오_유병국.pdf 생성 완료');
+
+  // 리멤버 프로필 (remember)
+  console.log('📄 리멤버 프로필 생성 중...');
+  await page.goto(`http://localhost:${PORT}${BASE_PATH}/remember/`, {
+    waitUntil: 'networkidle2',
+    timeout: 30000,
+  });
+  await page.pdf({ ...pdfOptions, path: path.join(__dirname, '리멤버프로필_유병국.pdf') });
+  console.log('✅ 리멤버프로필_유병국.pdf 생성 완료');
 
   await browser.close();
   server.close();

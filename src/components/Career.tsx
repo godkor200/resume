@@ -1,6 +1,10 @@
 import { careers } from '@/data/resume'
 import SectionHeader from './SectionHeader'
 
+const devCareers = careers.filter(
+  (c) => c.contribution !== undefined || c.company === '체인랩스'
+)
+
 export default function Career() {
   return (
     <section id="career" className="bg-gray-50 py-24 px-6">
@@ -8,12 +12,12 @@ export default function Career() {
         <SectionHeader label="경력" />
 
         <div className="mt-10 space-y-0">
-          {careers.map((job, i) => (
+          {devCareers.map((job, i) => (
             <div key={job.company} className="flex gap-6 group">
               {/* Timeline */}
               <div className="flex flex-col items-center">
                 <div className="w-3 h-3 rounded-full bg-blue-600 mt-1.5 shrink-0 group-first:ring-4 group-first:ring-blue-100" />
-                {i < careers.length - 1 && <div className="w-px flex-1 bg-gray-200 mt-2" />}
+                {i < devCareers.length - 1 && <div className="w-px flex-1 bg-gray-200 mt-2" />}
               </div>
 
               {/* Content */}
