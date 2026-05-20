@@ -328,6 +328,7 @@ export const sideProjects = [
     name: "차량 운행 로그 분석 파이프라인",
     period: "2026.04",
     github: "https://github.com/godkor200/driving-log",
+    blog: "https://velog.io/@godkor200/%EC%8B%A4%EC%8B%9C%EA%B0%84-%EC%B0%A8%EB%9F%89-%EC%9A%B4%ED%96%89-%EB%A1%9C%EA%B7%B8-%EB%B6%84%EC%84%9D-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%84-%EB%A7%8C%EB%93%A4%EB%A9%B0-%EB%B0%B0%EC%9A%B4-%EA%B2%83",
     description:
       "차량 센서 Raw 로그를 실시간 수신·정제하여 위험 운전 패턴을 탐지하는 백엔드 파이프라인 — IoT 디바이스 데이터 수집·처리 구조와 동일한 패턴으로 설계",
     techStack: ["Python", "FastAPI", "Kafka", "PostgreSQL", "NumPy", "Docker"],
