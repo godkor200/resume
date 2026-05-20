@@ -1,4 +1,8 @@
-import { info } from '@/data/resume'
+import { info, careers } from '@/data/resume'
+
+const devCareer = careers.filter((c) =>
+  ['스페이스오디티', '두디스 프로젝트', '프린트시티', '체인랩스'].includes(c.company)
+)
 
 export default function Hero() {
   return (
@@ -76,14 +80,25 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right: Profile photo */}
-          <div className="flex justify-center md:justify-end shrink-0">
-            <div className="w-52 h-52 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-lg ring-4 ring-gray-100">
-              <img
-                src="/resume/profile.jpeg"
-                alt="유병국 프로필 사진"
-                className="w-full h-full object-cover object-top"
-              />
+          {/* Right: Mini Timeline */}
+          <div className="hidden md:flex flex-col gap-0 shrink-0 w-56">
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Career</p>
+            <div className="relative">
+              <div className="absolute left-[5px] top-2 bottom-2 w-px bg-gray-200" />
+              <div className="space-y-6">
+                {devCareer.map((c, i) => (
+                  <div key={c.company} className="flex items-start gap-3">
+                    <div className={`mt-1.5 w-2.5 h-2.5 rounded-full shrink-0 z-10 ${i === 0 ? 'bg-blue-500' : 'bg-gray-300'}`} />
+                    <div>
+                      <p className={`text-sm font-semibold leading-snug ${i === 0 ? 'text-gray-900' : 'text-gray-600'}`}>
+                        {c.company}
+                      </p>
+                      <p className="text-xs text-gray-400">{c.role}</p>
+                      <p className="text-xs text-gray-300 mt-0.5">{c.period}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 

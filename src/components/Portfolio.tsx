@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import Image from 'next/image'
 import { portfolio } from '@/data/resume'
 import SectionHeader from './SectionHeader'
 
@@ -19,83 +20,235 @@ export default function Portfolio() {
   )
 }
 
-function ProjectCard({ project }: { project: (typeof portfolio)[number] }) {
-  const [open, setOpen] = useState(false)
+type GalleryItem = { src: string; label: string; description?: string }
+
+function Lightbox({
+  images,
+  index,
+  onClose,
+  onPrev,
+  onNext,
+}: {
+  images: GalleryItem[]
+  index: number
+  onClose: () => void
+  onPrev: () => void
+  onNext: () => void
+}) {
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowLeft') onPrev()
+      if (e.key === 'ArrowRight') onNext()
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [onClose, onPrev, onNext])
 
   return (
-    <div className="border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-200 transition-colors">
-      <div className="p-6 md:p-8">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
-          <div>
-            <div className="flex items-center gap-2 flex-wrap mb-1">
-              <h3 className="text-lg font-bold text-gray-900">{project.name}</h3>
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-blue-600 transition-colors"
-                aria-label="외부 링크"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-            </div>
-            <div className="flex items-center gap-2 flex-wrap">
-              <p className="text-sm text-gray-500">{project.company} · {project.period}</p>
-              {project.cofounder && (
-                <span className="px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded text-xs font-bold tracking-wide">
-                  Co-founder
-                </span>
-              )}
-            </div>
-          </div>
-          <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-semibold whitespace-nowrap self-start">
-            {project.badge}
-          </span>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+      onClick={onClose}
+    >
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors"
+        aria-label="닫기"
+      >
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <button
+        onClick={(e) => { e.stopPropagation(); onPrev() }}
+        className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors"
+        aria-label="이전"
+      >
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <div
+        className="flex items-center gap-6 max-w-6xl max-h-full w-full px-12"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <Image
+          src={images[index].src}
+          alt={images[index].label}
+          width={1200}
+          height={800}
+          className="max-h-[85vh] max-w-[70%] object-contain rounded-lg shrink-0"
+          unoptimized
+        />
+        <div className="flex flex-col gap-3 flex-1 max-w-[360px]">
+          <p className="text-white/40 text-xs">{index + 1} / {images.length}</p>
+          <p className="text-white font-semibold text-sm">{images[index].label}</p>
+          {images[index].description && (
+            <p className="text-white/60 text-xs leading-5 whitespace-pre-line">{images[index].description}</p>
+          )}
         </div>
-
-        <p className="text-gray-600 text-sm mb-5">{project.description}</p>
-
-        {/* Tech stack */}
-        <div className="flex flex-wrap gap-2 mb-5">
-          {project.techStack.map((tech) => (
-            <span key={tech} className="px-2.5 py-1 bg-gray-100 text-gray-600 rounded text-xs font-medium">
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        {/* Achievements */}
-        <ul className="space-y-1.5 mb-5">
-          {project.achievements.map((item) => (
-            <li key={item.slice(0, 40)} className="flex items-start gap-2 text-sm text-gray-600">
-              <span className="text-green-500 mt-1 shrink-0">✓</span>
-              <span className="leading-relaxed">{item}</span>
-            </li>
-          ))}
-        </ul>
-
-        {/* Expand toggle */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors print:hidden"
-        >
-          {open ? '접기' : '기술적 배경 보기'}
-          <svg
-            className={`w-4 h-4 transition-transform ${open ? 'rotate-180' : ''}`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
       </div>
 
-      {/* Expanded detail */}
-      <div className={`border-t border-gray-100 bg-gray-50 px-6 md:px-8 py-6 space-y-4 print:block ${open ? 'block' : 'hidden'}`}>
+      <button
+        onClick={(e) => { e.stopPropagation(); onNext() }}
+        className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors"
+        aria-label="다음"
+      >
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  )
+}
+
+function ProjectCard({ project }: { project: (typeof portfolio)[number] }) {
+  const [open, setOpen] = useState(false)
+  const [galleryOpen, setGalleryOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+
+  const gallery = (project as { gallery?: GalleryItem[] }).gallery
+
+  const openLightbox = (i: number) => setLightboxIndex(i)
+  const closeLightbox = () => setLightboxIndex(null)
+  const prevImage = useCallback(() => {
+    if (lightboxIndex === null || !gallery) return
+    setLightboxIndex((lightboxIndex - 1 + gallery.length) % gallery.length)
+  }, [lightboxIndex, gallery])
+  const nextImage = useCallback(() => {
+    if (lightboxIndex === null || !gallery) return
+    setLightboxIndex((lightboxIndex + 1) % gallery.length)
+  }, [lightboxIndex, gallery])
+
+  return (
+    <>
+      {lightboxIndex !== null && gallery && (
+        <Lightbox
+          images={gallery}
+          index={lightboxIndex}
+          onClose={closeLightbox}
+          onPrev={prevImage}
+          onNext={nextImage}
+        />
+      )}
+
+      <div className="border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-200 transition-colors">
+        <div className="p-6 md:p-8">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
+            <div>
+              <div className="flex items-center gap-2 flex-wrap mb-1">
+                <h3 className="text-lg font-bold text-gray-900">{project.name}</h3>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-blue-600 transition-colors"
+                  aria-label="외부 링크"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <p className="text-sm text-gray-500">{project.company} · {project.period}</p>
+                {project.cofounder && (
+                  <span className="px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded text-xs font-bold tracking-wide">
+                    Co-founder
+                  </span>
+                )}
+              </div>
+            </div>
+            <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-semibold whitespace-nowrap self-start">
+              {project.badge}
+            </span>
+          </div>
+
+          <p className="text-gray-600 text-sm mb-5">{project.description}</p>
+
+          {/* Tech stack */}
+          <div className="flex flex-wrap gap-2 mb-5">
+            {project.techStack.map((tech) => (
+              <span key={tech} className="px-2.5 py-1 bg-gray-100 text-gray-600 rounded text-xs font-medium">
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          {/* Achievements */}
+          <ul className="space-y-1.5 mb-5">
+            {project.achievements.map((item) => (
+              <li key={item.slice(0, 40)} className="flex items-start gap-2 text-sm text-gray-600">
+                <span className="text-green-500 mt-1 shrink-0">✓</span>
+                <span className="leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Buttons row */}
+          <div className="flex items-center gap-4 flex-wrap print:hidden">
+            <button
+              onClick={() => setOpen(!open)}
+              className="flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors"
+            >
+              {open ? '접기' : '기술적 배경 보기'}
+              <svg
+                className={`w-4 h-4 transition-transform ${open ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {gallery && gallery.length > 0 && (
+              <button
+                onClick={() => setGalleryOpen(!galleryOpen)}
+                className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 font-medium transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                {galleryOpen ? '갤러리 닫기' : `갤러리 (${gallery.length})`}
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Gallery grid */}
+        {gallery && galleryOpen && (
+          <div className="border-t border-gray-100 bg-gray-50 px-6 md:px-8 py-6 print:hidden">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              {gallery.map((item, i) => (
+                <button
+                  key={item.src}
+                  onClick={() => openLightbox(i)}
+                  className="group relative aspect-video rounded-lg overflow-hidden bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.label}
+                    fill
+                    className="object-cover transition-transform group-hover:scale-105"
+                    unoptimized
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-end">
+                    <span className="w-full px-2 py-1 text-xs text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-black/60 to-transparent">
+                      {item.label}
+                    </span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Expanded detail */}
+        <div className={`border-t border-gray-100 bg-gray-50 px-6 md:px-8 py-6 space-y-4 print:block ${open ? 'block' : 'hidden'}`}>
           <div>
             <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">문제</h4>
             <p className="text-sm text-gray-600 leading-7">{project.problem}</p>
@@ -124,7 +277,8 @@ function ProjectCard({ project }: { project: (typeof portfolio)[number] }) {
               </a>
             </div>
           )}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

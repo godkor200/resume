@@ -33,7 +33,7 @@ export const about = [
   "NestJS, TypeORM, PostgreSQL을 기반으로 데이터 수집·가공·집계 파이프라인을 설계해왔습니다. K-POP 아티스트·앨범 분석 서비스, 유튜브 콘텐츠 분석 플랫폼, 상품 자동 생성 시스템 등 데이터 규모와 조회 패턴이 까다로운 도메인을 주로 다뤘습니다.",
   "현장에서 가장 자주 마주한 문제는 조회 패턴과 맞지 않는 데이터 모델에서 비롯되는 병목과 동시성 이슈였습니다. 두디스에서는 약 40초에 달하던 집계 API 응답 시간을 약 3초로 단축했고 프린트시티에서는 재고 동시 수정으로 인한 데이터 충돌 문제를 낙관적 잠금(Optimistic Lock) 전략으로 해결했습니다.",
   "개발 이전에는 국내 3대 이동통신사를 대상으로 통신 장비 B2B 기술영업을 3년간 담당했습니다. 고객사 요구사항을 기술 스펙으로 번역하고 납기와 재고를 조율하는 과정에서 비즈니스 맥락을 읽는 감각을 키웠고, 이 경험이 지금도 요구사항을 데이터 구조와 API로 풀어내는 방식에 영향을 주고 있습니다.",
-  "단순한 기능 구현보다는 데이터 흐름과 도메인 경계를 먼저 정의하고 그 위에서 구조를 점진적으로 발전시키는 방식을 지향합니다.",
+  "단순한 기능 구현보다는 데이터 흐름과 도메인 경계를 먼저 정의하고 그 위에서 구조를 점진적으로 발전시키는 방식을 지향합니다. 기획부터 배포·운영까지 A to Z로 참여한 경험이 있으며 수집 이상치·장애를 빠르게 감지하는 실시간 모니터링·알림 구조 설계도 직접 담당했습니다.",
   "최근에는 LLM 기반 챗봇 개발에 깊은 관심을 갖고 있습니다. 백엔드 관점에서 단순한 프롬프트 연동을 넘어 대화 이력 관리·도구 호출(Tool Use)·RAG 파이프라인 설계 등 챗봇을 하나의 견고한 시스템으로 구축하는 방법을 탐구 중입니다.",
 ];
 
@@ -63,6 +63,10 @@ export const skills = [
       "Docker Compose",
       "Kubernetes",
     ],
+  },
+  {
+    category: "Auth",
+    items: ["JWT", "Passport"],
   },
   {
     category: "ETC",
@@ -241,6 +245,51 @@ export const portfolio = [
       "처음에는 OpenSearch 기반 구조를 도입해 검색과 집계 워크로드를 분리했지만 구조적으로 완전히 해결된 수준은 아니었습니다. 결국 문제의 핵심은 조인을 빠르게 하는 것이 아니라 조인을 계속 요구하는 구조 자체에 있다고 판단했습니다. DWH 데이터를 Logstash로 비정규화해 OpenSearch에 인덱싱하고 조회 시점 조인을 최대한 없애는 방식으로 전환했습니다. 검색 요청은 토큰 테이블에서 키워드와 연결된 콘텐츠 ID를 먼저 찾고 그 후보군을 기준으로 OpenSearch의 비정규화 데이터에서 최종 조회하도록 설계했습니다.",
     techDetail:
       "Main: MySQL / DWH: MariaDB / 인덱싱: Logstash → OpenSearch / 캐시: Redis, 토큰 테이블 / 수집: Kafka",
+    gallery: [
+      {
+        src: "/dothis-landing.png",
+        label: "랜딩페이지",
+        description: "두디스 서비스 소개 랜딩 페이지",
+      },
+      {
+        src: "/dothis-social-login.png",
+        label: "소셜 로그인",
+        description: "소셜 계정으로 간편하게 시작하는 로그인 화면",
+      },
+      {
+        src: "/dothis-keyword-search.png",
+        label: "키워드 검색 결과",
+        description:
+          "조회수 순위: 7만 개 키워드 중 일주일간 획득한 조회수 순위\n대표 카테고리: 검색 키워드 영상들의 주요 카테고리 (자체 분류 93가지)\n경쟁강도: 수요·공급 기반 7단계 분석 (블루오션 / 수요폭발 / 공급부족 / 양호 / 경쟁과열 / 공급과잉 / 수요부족)\n콘텐츠 추이: 일일 조회수·검색량·발행량 변화\n연관 소재: 영상에서 빈번히 등장한 키워드를 조회수 순 정렬\n연관 인기 영상·뉴스: 조회수순·발행일순 나열",
+      },
+      {
+        src: "/dothis-related-analysis.png",
+        label: "연관 소재 세부 분석",
+        description:
+          "조회수 예측: 내 채널 평균 조회수 × 주간 검색량 변동 × 시장 평균 조회수 × 성과 배수\n소재 전망: 주간 조회수·검색량 변동 기반 향후 전망\n성공 확률: 검색된 영상이 채널 평균을 초과할 통계적 확률\n조회수 성과: 검색 영상 조회수 ÷ 영상 주인의 채널 평균 조회수",
+      },
+      {
+        src: "/dothis-related-rank.png",
+        label: "연관어 순위 비교",
+        description:
+          "검색 키워드와 함께 사용했을 때 가장 높은 조회수가 기대되는 연관 소재를 순위로 비교 분석",
+      },
+      {
+        src: "/dothis-competitor.png",
+        label: "경쟁 채널 분석",
+        description: "동일 키워드를 다루는 경쟁 채널의 성과와 현황 분석",
+      },
+      {
+        src: "/dothis-storyboard1.png",
+        label: "스토리보드 1",
+        description: "서비스 기획 초기 스토리보드",
+      },
+      {
+        src: "/dothis-storyboard2.png",
+        label: "스토리보드 2",
+        description: "서비스 기획 초기 스토리보드",
+      },
+    ],
   },
   {
     id: 3,
@@ -276,6 +325,22 @@ export const portfolio = [
 
 export const sideProjects = [
   {
+    name: "차량 운행 로그 분석 파이프라인",
+    period: "2026.04",
+    github: "https://github.com/godkor200/driving-log",
+    description:
+      "차량 센서 Raw 로그를 실시간 수신·정제하여 위험 운전 패턴을 탐지하는 백엔드 파이프라인 — IoT 디바이스 데이터 수집·처리 구조와 동일한 패턴으로 설계",
+    techStack: ["Python", "FastAPI", "Kafka", "PostgreSQL", "NumPy", "Docker"],
+    achievements: [
+      "Kafka 토픽 구독 → 10초 슬라이딩 윈도우 버퍼링 후 일괄 처리로 건별 DB I/O 제거, 처리량 향상",
+      "np.interp + NumPy 벡터화 haversine으로 결측값 보간 및 거리 계산 — 순수 Python 루프 대비 처리 속도 개선",
+      "Bounding box 사전 필터로 제한구역 비교 연산 O(N×M)의 후보를 사전 축소, 불필요한 정밀 계산 회피",
+      "SQLAlchemy 2.0 Core bulk insert로 대용량 GPS 레코드 적재 최적화",
+      "SHA-256 기반 Trip 멱등성 처리 — 재전송 시 중복 적재 방지",
+      "MAX_RECORDS 가드 + Pydantic field_validator로 OOM 및 입력 이상치 방어",
+    ],
+  },
+  {
     name: "개인 투자 어시스턴트 플랫폼 (Stock Pile)",
     period: "2026.04 – 진행중",
     github: "https://github.com/godkor200/stock-pile",
@@ -299,22 +364,6 @@ export const sideProjects = [
       "DART 재무 · 네이버 뉴스 · Yahoo Finance 지표를 Promise.all 병렬 수집 후 LLM 합성 리포트 생성, 결과를 Redis에 24h 캐싱하여 API 호출 비용 절감",
       "pgvector 기반 뉴스 임베딩 RAG — 코사인 유사도 검색으로 분석 컨텍스트 보강",
       "shared-types · db-schema 패키지를 단일 소스로 관리해 DTO 중복 제거",
-    ],
-  },
-  {
-    name: "차량 운행 로그 분석 파이프라인",
-    period: "2026.04",
-    github: "https://github.com/godkor200/driving-log",
-    description:
-      "차량 Raw 로그를 실시간 수신·정제하여 위험 운전 패턴을 탐지하는 백엔드 파이프라인",
-    techStack: ["Python", "FastAPI", "Kafka", "PostgreSQL", "NumPy", "Docker"],
-    achievements: [
-      "Kafka 토픽 구독 → 10초 슬라이딩 윈도우 버퍼링 후 일괄 처리로 건별 DB I/O 제거, 처리량 향상",
-      "np.interp + NumPy 벡터화 haversine으로 결측값 보간 및 거리 계산 — 순수 Python 루프 대비 처리 속도 개선",
-      "Bounding box 사전 필터로 제한구역 비교 연산 O(N×M)의 후보를 사전 축소, 불필요한 정밀 계산 회피",
-      "SQLAlchemy 2.0 Core bulk insert로 대용량 GPS 레코드 적재 최적화",
-      "SHA-256 기반 Trip 멱등성 처리 — 재전송 시 중복 적재 방지",
-      "MAX_RECORDS 가드 + Pydantic field_validator로 OOM 및 입력 이상치 방어",
     ],
   },
 ];
@@ -375,13 +424,13 @@ export const education = [
     gpa: "75.6 / 100",
     note: "미적분, 선형대수, 확률과 통계, 미시·거시경제학, 노동경제학 이수. 데이터 기반 의사결정 및 분석적 사고에 대한 학문적 기초 역량 확보.",
   },
-  {
-    school: "한국 대구 계명대학교 (Keimyung University)",
-    major: "어문학계열 / 중국어문학과 전공 / 국제 통상학 부전공",
-    period: "2008.03 – 2012.03 (중퇴)",
-    gpa: "3.0 / 4.5",
-    note: "중국어 문법, 회화, 작문, 독해 및 중국 문학·문화 관련 과목 이수. 국제통상 부전공을 통해 무역 실무, 국제경제, 통상 구조에 대한 기초 이해 확보. 언어와 문화 그리고 통상에 대한 이해를 바탕으로 커뮤니케이션 역량과 다양한 관점을 해석하는 사고력 형성.",
-  },
+  // {
+  //   school: "한국 대구 계명대학교 (Keimyung University)",
+  //   major: "어문학계열 / 중국어문학과 전공 / 국제 통상학 부전공",
+  //   period: "2008.03 – 2012.03 (중퇴)",
+  //   gpa: "3.0 / 4.5",
+  //   note: "중국어 문법, 회화, 작문, 독해 및 중국 문학·문화 관련 과목 이수. 국제통상 부전공을 통해 무역 실무, 국제경제, 통상 구조에 대한 기초 이해 확보. 언어와 문화 그리고 통상에 대한 이해를 바탕으로 커뮤니케이션 역량과 다양한 관점을 해석하는 사고력 형성.",
+  // },
 ];
 
 export const training = [
