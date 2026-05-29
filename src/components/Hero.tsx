@@ -1,7 +1,7 @@
 import { info, careers } from '@/data/resume'
 
 const devCareer = careers.filter((c) =>
-  ['스페이스오디티', '두디스 프로젝트', '프린트시티', '체인랩스'].includes(c.company)
+  ['스페이스오디티', '두디스 프로젝트', '메가프레스', '체인랩스'].includes(c.company)
 )
 
 export default function Hero() {
