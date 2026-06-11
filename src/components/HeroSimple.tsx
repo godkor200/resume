@@ -1,4 +1,5 @@
 import { info } from '@/data/resume'
+import { SITE_URL } from '@/lib/asset'
 
 export default function HeroSimple() {
   return (
@@ -32,6 +33,15 @@ export default function HeroSimple() {
               {link.label}
             </a>
           ))}
+          {/* PDF 전용: 웹 이력서 URL */}
+          <a
+            href={SITE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden print:inline text-blue-600"
+          >
+            웹 이력서 ↗
+          </a>
         </div>
       </div>
     </section>

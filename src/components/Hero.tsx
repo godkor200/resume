@@ -1,4 +1,5 @@
 import { info, careers } from '@/data/resume'
+import { SITE_URL } from '@/lib/asset'
 
 const devCareer = careers.filter((c) =>
   ['스페이스오디티', '두디스 프로젝트', '메가프레스'].includes(c.company)
@@ -77,6 +78,15 @@ export default function Hero() {
                   {link.label}
                 </a>
               ))}
+              {/* PDF 전용: 웹 이력서 URL */}
+              <a
+                href={SITE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden print:inline-flex items-center px-5 py-2.5 rounded-lg text-sm font-medium border border-blue-200 text-blue-700"
+              >
+                웹 이력서 ↗
+              </a>
             </div>
           </div>
 

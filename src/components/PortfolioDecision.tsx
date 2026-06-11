@@ -3,14 +3,10 @@
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { portfolio } from '@/data/resume'
-import { asset } from '@/lib/asset'
+import { asset, SITE_URL } from '@/lib/asset'
 import SectionHeader from './SectionHeader'
 
 type GalleryItem = { src: string; label: string; description?: string }
-
-// 갤러리는 화면에서 토글로 펼쳐 보지만, 정적 PDF에는 담기지 않는다.
-// PDF(인쇄)에서는 라이브 사이트의 포트폴리오 페이지로 가는 링크로 대체한다.
-const LIVE_PORTFOLIO_URL = 'https://godkor200.github.io/resume/portfolio/'
 
 function Lightbox({
   images,
@@ -206,9 +202,9 @@ function ProjectCard({ project }: { project: (typeof portfolio)[number] }) {
                   </svg>
                   {galleryOpen ? '갤러리 닫기' : `갤러리 (${gallery.length})`}
                 </button>
-                {/* PDF(인쇄): 라이브 갤러리 링크로 리다이렉션 */}
+                {/* PDF(인쇄): 갤러리 전용 페이지로 리다이렉션 */}
                 <a
-                  href={LIVE_PORTFOLIO_URL}
+                  href={`${SITE_URL}gallery/#gallery-${project.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hidden print:inline-flex items-center gap-1.5 text-sm text-blue-600 font-medium"
