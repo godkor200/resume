@@ -3,9 +3,14 @@
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { portfolio } from '@/data/resume'
+import { asset } from '@/lib/asset'
 import SectionHeader from './SectionHeader'
 
 type GalleryItem = { src: string; label: string; description?: string }
+
+// 갤러리는 화면에서 토글로 펼쳐 보지만, 정적 PDF에는 담기지 않는다.
+// PDF(인쇄)에서는 라이브 사이트의 포트폴리오 페이지로 가는 링크로 대체한다.
+const LIVE_PORTFOLIO_URL = 'https://godkor200.github.io/resume/portfolio/'
 
 function Lightbox({
   images,
@@ -60,7 +65,7 @@ function Lightbox({
         onClick={(e) => e.stopPropagation()}
       >
         <Image
-          src={images[index].src}
+          src={asset(images[index].src)}
           alt={images[index].label}
           width={1200}
           height={800}
@@ -190,15 +195,30 @@ function ProjectCard({ project }: { project: (typeof portfolio)[number] }) {
             )}
 
             {gallery && gallery.length > 0 && (
-              <button
-                onClick={() => setGalleryOpen(!galleryOpen)}
-                className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 font-medium transition-colors"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                {galleryOpen ? '갤러리 닫기' : `갤러리 (${gallery.length})`}
-              </button>
+              <>
+                {/* 화면: 인라인 토글 */}
+                <button
+                  onClick={() => setGalleryOpen(!galleryOpen)}
+                  className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 font-medium transition-colors print:hidden"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  {galleryOpen ? '갤러리 닫기' : `갤러리 (${gallery.length})`}
+                </button>
+                {/* PDF(인쇄): 라이브 갤러리 링크로 리다이렉션 */}
+                <a
+                  href={LIVE_PORTFOLIO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden print:inline-flex items-center gap-1.5 text-sm text-blue-600 font-medium"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  갤러리 보기 ({gallery.length}) ↗
+                </a>
+              </>
             )}
           </div>
         </div>
@@ -214,7 +234,7 @@ function ProjectCard({ project }: { project: (typeof portfolio)[number] }) {
                   className="group relative aspect-video rounded-lg overflow-hidden bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
                 >
                   <Image
-                    src={item.src}
+                    src={asset(item.src)}
                     alt={item.label}
                     fill
                     className="object-cover transition-transform group-hover:scale-105"

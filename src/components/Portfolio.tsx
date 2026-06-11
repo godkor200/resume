@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { portfolio } from '@/data/resume'
+import { asset } from '@/lib/asset'
 import SectionHeader from './SectionHeader'
 
 export default function Portfolio() {
@@ -75,7 +76,7 @@ function Lightbox({
         onClick={(e) => e.stopPropagation()}
       >
         <Image
-          src={images[index].src}
+          src={asset(images[index].src)}
           alt={images[index].label}
           width={1200}
           height={800}
@@ -253,7 +254,7 @@ function ProjectCard({ project }: { project: (typeof portfolio)[number] }) {
                   className="group relative aspect-video rounded-lg overflow-hidden bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
                 >
                   <Image
-                    src={item.src}
+                    src={asset(item.src)}
                     alt={item.label}
                     fill
                     className="object-cover transition-transform group-hover:scale-105"

@@ -1,9 +1,7 @@
 import { careers } from '@/data/resume'
 import SectionHeader from './SectionHeader'
 
-const devCareers = careers.filter(
-  (c) => c.contribution !== undefined || c.company === '체인랩스'
-)
+const devCareers = careers.filter((c) => c.contribution !== undefined)
 
 export default function Career() {
   return (

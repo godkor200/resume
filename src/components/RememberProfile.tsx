@@ -2,7 +2,7 @@ import { info, careers, skills, certifications, patents, training, sideProjects 
 import SectionHeader from './SectionHeader'
 
 const rememberCareers = careers.filter((c) =>
-  ['스페이스오디티', '두디스 프로젝트', '메가프레스', '체인랩스'].includes(c.company)
+  ['스페이스오디티', '두디스 프로젝트', '메가프레스'].includes(c.company)
 )
 
 const rememberAbout = `5년차 백엔드 개발자입니다. NestJS · TypeORM · PostgreSQL 기반으로 데이터 수집·가공·집계 파이프라인을 설계해왔습니다. K-POP 분석 서비스, 유튜브 콘텐츠 분석 플랫폼, 인쇄물 커머스 자동화 시스템 등 데이터 규모와 조회 패턴이 까다로운 도메인을 주로 다뤘습니다. 조회 패턴과 맞지 않는 데이터 모델에서 비롯되는 병목 문제를 구조적으로 개선하는 데 강점이 있으며, 두디스에서 핵심 집계 API 응답 시간을 40초 → 3초로 단축하고, 메가프레스에서 Optimistic Locking으로 재고 동시성 문제를 해결한 경험이 있습니다.`

@@ -146,18 +146,6 @@ export const careers: Array<{
     ],
   },
   {
-    company: "체인랩스",
-    role: "개발 인턴",
-    period: "2021.05 – 2021.06",
-    contribution: undefined,
-    summary: "블록체인 개발 인턴",
-    achievements: [
-      "이더리움 기반 블록체인 개발 환경 구성 및 스마트컨트랙트 배포 실습",
-      "Truffle · Ganache · MetaMask · MyEtherWallet을 활용한 Private Network 개발 환경 세팅",
-      "스마트컨트랙트 개발 및 로컬 네트워크 배포 경험",
-    ],
-  },
-  {
     company: "캐스트윈",
     role: "기술영업",
     period: "2017.01 – 2020.02",

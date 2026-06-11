@@ -3,6 +3,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const { PDFDocument } = require('pdf-lib');
 
 const OUT_DIR = path.join(__dirname, 'out');
 const BASE_PATH = '/resume';
@@ -118,8 +119,37 @@ async function main() {
   await page.pdf({ ...pdfOptions, path: path.join(__dirname, '리멤버프로필_유병국.pdf') });
   console.log('✅ 리멤버프로필_유병국.pdf 생성 완료');
 
+  // 통합본 (all) — 헤더/푸터 중복 없이 이력서+포트폴리오+경력기술서 단일 렌더링
+  console.log('📄 통합본(이력서+포트폴리오+경력기술서) 생성 중...');
+  await page.goto(`http://localhost:${PORT}${BASE_PATH}/all/`, {
+    waitUntil: 'networkidle2',
+    timeout: 30000,
+  });
+  await page.pdf({ ...pdfOptions, path: path.join(__dirname, '이력서+포트폴리오+경력기술서_유병국.pdf') });
+  console.log('✅ 이력서+포트폴리오+경력기술서_유병국.pdf 생성 완료');
+
   await browser.close();
   server.close();
+
+  // 병합본 생성 (단순 이어붙이기 — 별도 제출용)
+  const merges = [
+    {
+      output: '이력서+경력기술서_유병국.pdf',
+      parts: ['이력서_유병국.pdf', '경력기술서_유병국.pdf'],
+    },
+  ];
+
+  for (const { output, parts } of merges) {
+    console.log(`📄 ${output} 병합 중...`);
+    const merged = await PDFDocument.create();
+    for (const f of parts) {
+      const src = await PDFDocument.load(fs.readFileSync(path.join(__dirname, f)));
+      const pages = await merged.copyPages(src, src.getPageIndices());
+      pages.forEach((p) => merged.addPage(p));
+    }
+    fs.writeFileSync(path.join(__dirname, output), await merged.save());
+    console.log(`✅ ${output} 병합 완료`);
+  }
 }
 
 main().catch((e) => {
