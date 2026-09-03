@@ -48,6 +48,7 @@ export const skills = [
       "MySQL",
       "MongoDB",
       "Redis",
+      "Elasticsearch",
       "OpenSearch",
       "Google Firestore",
       "Kafka",
@@ -57,11 +58,15 @@ export const skills = [
   {
     category: "Infra / DevOps",
     items: [
-      "AWS (EC2, RDS, S3, ECR, Elastic Beanstalk, Route53, Lambda, SQS)",
+      "AWS (EC2, EKS, RDS, S3, ECR, Elastic Beanstalk, Route53, Lambda, SQS, Secrets Manager)",
       "GCP (Compute Engine)",
       "Docker",
       "Docker Compose",
       "Kubernetes",
+      "ArgoCD",
+      "Helm",
+      "Istio (Gateway API)",
+      "External Secrets Operator",
     ],
   },
   {
@@ -93,6 +98,26 @@ export const careers: Array<{
   summary: string;
   achievements: string[];
 }> = [
+  {
+    company: "로앤컴퍼니",
+    role: "Backend Developer",
+    period: "2026.06 – 재직 중",
+    contribution: "백엔드 단독",
+    summary:
+      "글로벌 리걸 AI SaaS 백엔드 단독 구축 · 검색 인프라 · 과금 시스템 설계 · 운영 배포 파이프라인",
+    achievements: [
+      "9개 법역 대상 글로벌 리걸 AI SaaS(Lexpand AI) 백엔드를 단독으로 구축해 정식 오픈까지 완주 — API 77개 · 모듈 31개 · 테이블 45개 · 티켓 52건",
+      "테스트 892건(유닛 619 · e2e 273) 작성 — 테스트 코드 20.5K줄로 소스(19.5K줄)를 상회, 변이 테스트로 검출력까지 상시 검증",
+      "Elasticsearch 대화 검색 색인 워커를 별도 앱으로 분리 구축 — 증분 색인 · ILM 롤오버 · Redis 커서 기반 재개",
+      "한국어 질의에 일본어·중국어 문서가 노출되던 다국어 검색 오염을 진단 — nori_readingform이 한자를 한국어 독음으로 색인하는 것이 원인, 분석기 재정의 후 전체 재색인으로 해소",
+      "기능별 차등 과금 시스템 설계 — 기본 단가 + 가산 구조로 신규 기능 확장을 상수 정의만으로 가능하게 함",
+      "환불 로직이 차감액을 알지 못하는 구조적 결함 발견 — 6개 앱이 공유하는 엔티티의 스키마 변경 대신 동일 트랜잭션에 저장된 이력으로 역산해, 타 서비스 DB 마이그레이션 없이 해결",
+      "대화 중단 API의 소유권 검증 누락(IDOR)과 전화번호 기준 무상 크레딧 반복 수령 경로를 서비스 오픈 전 발견·차단",
+      "비동기 문서 분석 파이프라인 구축 — 외부 OCR·파싱 서비스 콜백, 타임아웃 처리, 실패 시 크레딧 자동 환불 및 재시도 정책",
+      "LLM 응답 이중 스트리밍(SSE) 및 AI 문서 작성 버전 관리·되돌리기 구현",
+      "EKS · ArgoCD · External Secrets · Istio Gateway API 기반 운영 배포 파이프라인 구축 (ECR · IAM 역할 · Helm 차트 포함)",
+    ],
+  },
   {
     company: "스페이스오디티",
     role: "Backend Developer",
