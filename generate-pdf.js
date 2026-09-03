@@ -72,7 +72,15 @@ async function main() {
   await waitForServer(`http://localhost:${PORT}${BASE_PATH}/career/`);
   console.log(`🚀 Server ready at http://localhost:${PORT}`);
 
-  const browser = await puppeteer.launch({ headless: 'new' });
+  // puppeteer 번들 크롬 대신 환경변수로 지정한 브라우저를 쓸 수 있게 한다.
+  // 번들 다운로드가 중간에 끊겨도 시스템에 설치된 크롬으로 PDF를 뽑을 수 있다.
+  //   PUPPETEER_EXECUTABLE_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" npm run pdf
+  const browser = await puppeteer.launch({
+    headless: 'new',
+    ...(process.env.PUPPETEER_EXECUTABLE_PATH
+      ? { executablePath: process.env.PUPPETEER_EXECUTABLE_PATH }
+      : {}),
+  });
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 900 });
 
